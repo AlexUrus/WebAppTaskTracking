@@ -7,7 +7,6 @@ using WebAppSibers.Service.Interfaces;
 
 namespace WebAppSibers.Controllers
 {
-    [Authorize(Roles = "Leader")]
     public class ProjectController : Controller
     {
         private readonly IProjectService _projectService;
@@ -27,7 +26,6 @@ namespace WebAppSibers.Controllers
         }
 
         // GET: Projects/Create
-        [Authorize(Roles = "Leader")]
         public async Task<IActionResult> Create()
         {
             var projectManagersResponce = await _employeeService.GetEmployeesAsync();

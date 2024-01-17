@@ -15,7 +15,6 @@ namespace WebAppSibers.DAL
         public DbSet<Employee> Employees { get; set; }
         public DbSet<EmployeeProject> EmployeeProjects { get; set; }
         public DbSet<Domain.Models.Task> Tasks { get; set; }
-        public DbSet<IdentityRole> IdentityRoles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

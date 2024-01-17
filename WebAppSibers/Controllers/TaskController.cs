@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using WebAppSibers.Domain.Models;
 using WebAppSibers.Service.Interfaces;
 
 namespace WebAppSibers.Controllers
