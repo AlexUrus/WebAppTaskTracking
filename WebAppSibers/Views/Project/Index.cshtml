@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WebAppSibers.Domain.Models.Project>
+<div class="block">
+    <h2>Projects List</h2>
+</div>
+
+<div class="block">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Project Name</th>
+                <th>Customer Company</th>
+                <th>Executor Company</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Priority</th>
+                <th>Project Manager</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var project in Model)
+            {
+                <tr>
+                    <td>@project.ProjectName</td>
+                    <td>@project.CustomerCompany</td>
+                    <td>@project.ExecutorCompany</td>
+                    <td>@project.StartDate.ToShortDateString()</td>
+                    <td>@project.EndDate.ToShortDateString()</td>
+                    <td>@project.Priority</td>
+                    <td>@project.ProjectManager.FullName</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@project.Id">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@project.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="block">
+    <form method="get" asp-action="Create">
+        <div class="form-group">
+            <input type="submit" value="Create Project" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+

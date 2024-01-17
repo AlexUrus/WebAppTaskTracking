@@ -1,0 +1,75 @@
+﻿@model IEnumerable<WebAppSibers.Domain.Models.Task>
+
+<div class="block">
+    <h2>Tasks</h2>
+</div>
+
+<div class="block">
+    @using (Html.BeginForm("Index", "Task", FormMethod.Get))
+    {
+        <div class="form-group">
+            <label for="statusFilter">Filter by Status:</label>
+            <select id="statusFilter" name="statusFilter" class="form-control">
+                <option value="">All</option>
+                <option value="ToDo">ToDo</option>
+                <option value="InProgress">InProgress</option>
+                <option value="Done">Done</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Apply Filter" class="btn btn-primary" />
+        </div>
+    }
+</div>
+
+<div class="block">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Task Name</th>
+                <th>Author</th>
+                <th>Assignee</th>
+                <th>Project</th>
+                <th>Status</th>
+                <th>Comment</th>
+                <th>Priority</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var task in Model)
+            {
+                <tr>
+                    <td>@task.TaskName</td>
+                    <td>@task.Author.FullName</td>
+                    <td>@task.Assignee.FullName</td>
+                    <td>@task.Project.ProjectName</td>
+                    <td>@task.Status</td>
+                    <td>@task.Comment</td>
+                    <td>@task.Priority</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@task.Id">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@task.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="block">
+    <div class="form-group">
+        <label>Sort by:</label>
+        <a asp-action="Index" asp-route-sortOrder="TaskName">Task Name</a> |
+        <a asp-action="Index" asp-route-sortOrder="Author">Author</a> |
+        <a asp-action="Index" asp-route-sortOrder="Assignee">Assignee</a> |
+        <a asp-action="Index" asp-route-sortOrder="Priority">Priority</a>
+    </div>
+</div>
+
+<div class="block">
+    <form method="get" asp-action="Create">
+        <div class="form-group">
+            <input type="submit" value="Create Task" class="btn btn-primary" />
+        </div>
+    </form>
+</div>

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<WebAppSibers.Domain.Models.Employee>
+<div class="block">
+    <h2>Employee List</h2>
+</div>
+
+<div class="block">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Middle Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model)
+            {
+                <tr>
+                    <td>@employee.Id</td>
+                    <td>@employee.FirstName</td>
+                    <td>@employee.LastName</td>
+                    <td>@employee.MiddleName</td>
+                    <td>@employee.Email</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@employee.Id">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@employee.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="block">
+    <form method="get" asp-action="Create">
+        <div class="form-group">
+            <input type="submit" value="Create Employee" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
